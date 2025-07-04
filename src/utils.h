@@ -83,43 +83,55 @@
     COMPILER_WARN_RESTORE()
 
 #ifndef MAX
-/**
- * Get maximum of two values.
- *
- * @param[in]	a   First value.
- * @param[in]   b   Second value.
- * @return      Maximum of two values.
- */
-#define MAX(a, b)   (((a) > (b)) ? (a) : (b))
+    /**
+     * Get maximum of two values.
+     *
+     * @param[in]	a   First value.
+     * @param[in]   b   Second value.
+     * @return      Maximum of two values.
+     */
+    #define MAX(a, b)   (((a) > (b)) ? (a) : (b))
 #endif
 
 #ifndef MIN
-/**
- * Get minimum of two values.
- *
- * @param[in]	a   First value.
- * @param[in]   b   Second value.
- * @return      Minimum of two values.
- */
-#define MIN(a, b)   (((a) < (b)) ? (a) : (b))
+    /**
+     * Get minimum of two values.
+     *
+     * @param[in]	a   First value.
+     * @param[in]   b   Second value.
+     * @return      Minimum of two values.
+     */
+    #define MIN(a, b)   (((a) < (b)) ? (a) : (b))
+#endif
+
+#ifndef LIMIT
+    /**
+     * Limit value between [lower,upper] interval
+     *
+     * @param[in]   val     Value to limit
+     * @param[in]   lower   Limit limit
+     * @param[in]   upper   Upper limit
+     * @return      Minimum of two values.
+     */
+    #define LIMIT(val, lower, upper) ( MAX( lower, MIN( val, upper )))
 #endif
 
 #ifndef STRINGIFY
-/**
- * Stringify preprocessor token.
- *
- * @param[in]	x   Token.
- * @return      String.
- */
-#define STRINGIFY(x)    #x
+    /**
+     * Stringify preprocessor token.
+     *
+     * @param[in]	x   Token.
+     * @return      String.
+     */
+    #define STRINGIFY(x)    #x
 #endif
 
 #ifdef __GNUC__
-#define COMPILER_WARN_IGNORE(warns)                     \
-    _Pragma(STRINGIFY(GCC diagnostic push))             \
-    _Pragma(STRINGIFY(GCC diagnostic ignored warns))
+    #define COMPILER_WARN_IGNORE(warns)                     \
+        _Pragma(STRINGIFY(GCC diagnostic push))             \
+        _Pragma(STRINGIFY(GCC diagnostic ignored warns))
 
-#define COMPILER_WARN_RESTORE() _Pragma(STRINGIFY(GCC diagnostic pop))
+    #define COMPILER_WARN_RESTORE() _Pragma(STRINGIFY(GCC diagnostic pop))
 #endif
 
 /**
