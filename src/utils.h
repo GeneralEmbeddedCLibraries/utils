@@ -24,6 +24,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include <assert.h>
 #include <stdint.h>
+#include <math.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -243,6 +244,40 @@
  * 32-bit floating point type.
  */
 typedef float float32_t;
+
+/**
+ * Wraps an angle (in radians) to the range [-M_PI, M_PI).
+ *
+ * @param   angle The input angle in radians.
+ * @return  The angle wrapped to [-M_PI, M_PI).
+ */
+#define WRAP_ANGLE_PI(angle) \
+    ({ \
+        float32_t __a = (angle); \
+        __a = fmodf(__a + M_PI, 2.0f * M_PI); \
+        if (__a < 0) { \
+            __a += 2.0f * M_PI; \
+        } \
+        __a - M_PI; \
+    })
+
+/**
+ * Wraps an angle (in radians) to the range [-M_PI_2, M_PI_2).
+ *
+ * @param   angle The input angle in radians.
+ * @return  The angle wrapped to [-M_PI_2, M_PI_2).
+ */
+#define WRAP_ANGLE_PI_2(angle) \
+    ({ \
+        float32_t __a = WRAP_ANGLE_PI(angle); /* First wrap to [-PI, PI) */ \
+        \
+        if (__a > M_PI_2) { \
+            __a -= M_PI; \
+        } else if (__a < -M_PI_2) { \
+            __a += M_PI; \
+        } \
+        __a; \
+    })
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
