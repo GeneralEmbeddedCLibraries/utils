@@ -279,6 +279,16 @@ typedef float float32_t;
         __a; \
     })
 
+/**
+ *  RPMs to rad/sec
+ */
+#define RPM_TO_RAD_PER_SEC      ((float32_t)( 2.0 * M_PI / 60.0 ))
+
+/**
+ *  rad/s to RPMs
+ */
+#define RAD_PER_SEC_TO_RPM      ((float32_t)( 1.0 / RPM_TO_RAD_PER_SEC ))
+
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 ////////////////////////////////////////////////////////////////////////////////
