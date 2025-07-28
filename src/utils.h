@@ -289,6 +289,12 @@ typedef float float32_t;
  */
 #define RAD_PER_SEC_TO_RPM      ((float32_t)( 1.0 / RPM_TO_RAD_PER_SEC ))
 
+/**
+ *  Rad to degrees and back
+ */
+#define RAD_TO_DEG              ((float32_t)( 180.0 / M_PI ))
+#define DEG_TO_RAD              ((float32_t)( 1 / RAD_TO_DEG ))
+
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 ////////////////////////////////////////////////////////////////////////////////
