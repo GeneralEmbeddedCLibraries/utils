@@ -246,6 +246,13 @@
 typedef float float32_t;
 
 /**
+ *  Two times PI
+ *
+ * @note    M_PI should be defined in <math.h> lib!
+ */
+#define UTILS_TWOPI        ( 2.0 * M_PI )
+
+/**
  * Wraps an angle (in radians) to the range [-M_PI, M_PI).
  *
  * @param   angle The input angle in radians.
