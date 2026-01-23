@@ -25,6 +25,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include <math.h>
+#include <stdatomic.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -301,6 +302,15 @@ typedef float float32_t;
  */
 #define RAD_TO_DEG              ((float32_t)( 180.0 / M_PI ))
 #define DEG_TO_RAD              ((float32_t)( 1 / RAD_TO_DEG ))
+
+/**
+ *  C11 Atomic load and store
+ *
+ *  Learn more about C11 atomic -> https://preshing.com/20120913/acquire-and-release-semantics/
+ */
+#define ATOMIC_LOAD(ptr)        atomic_load_explicit(ptr, memory_order_relaxed)
+#define ATOMIC_STORE(ptr, val)  atomic_store_explicit(ptr, val, memory_order_relaxed)
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
